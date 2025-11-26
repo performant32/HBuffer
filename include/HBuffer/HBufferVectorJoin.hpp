@@ -21,7 +21,7 @@ template <typename Allocator=std::allocator<HBuffer>>
 class HBufferVectorJoin{
 public:
     using VectorContainer = std::vector<HBuffer, Allocator>;
-    using Iterator = VectorContainer::iterator;
+    using Iterator = HBufferVectorJoin<Allocator>::VectorContainer::iterator;
 
     HBufferVectorJoin() HBUFF_NOEXCEPT{}
     ~HBufferVectorJoin() HBUFF_NOEXCEPT{}
@@ -213,7 +213,7 @@ public:
     HBuffer& Back()const HBUFF_NOEXCEPT{
         return (HBuffer&)m_Vectors.back();
     }
-    
+
     Iterator begin()noexcept{return m_Vectors.begin();}
     Iterator end()noexcept{return m_Vectors.end();}
 public:
