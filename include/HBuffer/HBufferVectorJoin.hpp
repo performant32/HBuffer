@@ -21,7 +21,7 @@ template <typename Allocator=std::allocator<HBuffer>>
 class HBufferVectorJoin{
 public:
     using VectorContainer = std::vector<HBuffer, Allocator>;
-    using Iterator = HBufferVectorJoin<Allocator>::VectorContainer::iterator;
+    using Iterator = typename HBufferVectorJoin<Allocator>::VectorContainer::iterator;
 
     HBufferVectorJoin() HBUFF_NOEXCEPT{}
     ~HBufferVectorJoin() HBUFF_NOEXCEPT{}
