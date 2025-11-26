@@ -20,6 +20,9 @@ struct HBufferVectorJoinIndexInfo{
 template <typename Allocator=std::allocator<HBuffer>>
 class HBufferVectorJoin{
 public:
+    using VectorContainer = std::vector<HBuffer, Allocator>;
+    using Iterator = VectorContainer::iterator;
+
     HBufferVectorJoin() HBUFF_NOEXCEPT{}
     ~HBufferVectorJoin() HBUFF_NOEXCEPT{}
 
@@ -210,11 +213,14 @@ public:
     HBuffer& Back()const HBUFF_NOEXCEPT{
         return (HBuffer&)m_Vectors.back();
     }
+    
+    Iterator begin()noexcept{return m_Vectors.begin();}
+    Iterator end()noexcept{return m_Vectors.end();}
 public:
-    std::vector<HBuffer, Allocator>& GetVectors()const HBUFF_NOEXCEPT{return (std::vector<HBuffer, Allocator>&)m_Vectors;}
-    std::vector<size_t>& GetIndices()const HBUFF_NOEXCEPT{return (std::vector<size_t>&)m_Indices;}
+    VectorContainer& GetVectors() HBUFF_NOEXCEPT{return m_Vectors;}
+    std::vector<size_t>& GetIndices() HBUFF_NOEXCEPT{return m_Indices;}
 private:
-    std::vector<HBuffer, Allocator> m_Vectors;
+    VectorContainer m_Vectors;
     /// @brief a vector where each node contains the sizes of all vectors before it
     /// Example: vec size 15, vec size 20, vec size 2
     /// Values: 0, 15, 35
