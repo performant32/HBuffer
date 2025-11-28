@@ -217,8 +217,11 @@ public:
     Iterator begin()noexcept{return m_Vectors.begin();}
     Iterator end()noexcept{return m_Vectors.end();}
 public:
-    VectorContainer& GetVectors() HBUFF_NOEXCEPT{return m_Vectors;}
-    std::vector<size_t>& GetIndices() HBUFF_NOEXCEPT{return m_Indices;}
+    const VectorContainer& GetVectors() const HBUFF_NOEXCEPT{return m_Vectors;}
+    const std::vector<size_t>& GetIndices() const HBUFF_NOEXCEPT{return m_Indices;}
+
+    VectorContainer& GetVectorsRef() HBUFF_NOEXCEPT{return m_Vectors;}
+    std::vector<size_t>& GetIndicesRef() HBUFF_NOEXCEPT{return m_Indices;}
 private:
     VectorContainer m_Vectors;
     /// @brief a vector where each node contains the sizes of all vectors before it
